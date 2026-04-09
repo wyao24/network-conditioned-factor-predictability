@@ -26,3 +26,8 @@ This is an initial repository organization pass rather than a final cleaned rese
 - Add clearer documentation for the data pipeline, notebook workflow, and reproducibility steps.
 - Decide whether selected large outputs should move to GitHub Releases, cloud storage, or data versioning.
 - Clean up duplicate or overlapping outputs after confirming which versions are authoritative.
+
+## Environment
+
+A baseline `requirements.txt` is provided for core project dependencies and notebook execution; it may be expanded after full reproducibility validation.
+

@@ -24,6 +24,12 @@
 - `scribe_notes_work/` moved to `archive/supporting/scribe_notes_work/`
 - `presentation_media_extract/` moved to `archive/supporting/presentation_media_extract/`
 
+## Repository Convention
+
+- Keep all slide decks in `docs/`.
+- Keep `reports/` limited to paper/report-style artifacts.
+- Do not keep duplicate slide copies under `reports/`.
+
 ## Files Left Ambiguous
 
 - `analysis_outputs/priority4_6/alphamark_manifest.json` remains local with ignored outputs and may or may not belong in tracked project metadata later.

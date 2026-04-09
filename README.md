@@ -8,8 +8,8 @@ This is an initial repository organization pass rather than a final cleaned rese
 
 - `src/`: project Python entry point used for the AlphaMark benchmark workflow
 - `notebooks/`: project notebooks used for the course work and integrated analysis pass
-- `reports/`: proposal, progress report, final project write-up, and notebook guide
-- `docs/`: project slide deck
+- `reports/`: proposal, progress report, final project write-up, and notebook guide (paper/report artifacts only)
+- `docs/`: all slide decks (canonical location; no duplicate slide copies kept in `reports/`)
 - `figures/`: lightweight presentation-ready figures and companion CSV summaries
 - `data/`: small CSV inputs and summary outputs retained for the first upload
 - `archive/`: supporting or less central materials preserved without deleting them
@@ -18,6 +18,7 @@ This is an initial repository organization pass rather than a final cleaned rese
 
 - Large local data and generated output directories remain in the working folder but are excluded from git in this first pass.
 - Archive content is retained conservatively so existing work is not lost during cleanup.
+- Repository convention: keep all slide decks in `docs/` and keep `reports/` focused on paper-style artifacts.
 
 ## TODO
 

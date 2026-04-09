@@ -14,6 +14,26 @@ This is an initial repository organization pass rather than a final cleaned rese
 - `data/`: small CSV inputs and summary outputs retained for the first upload
 - `archive/`: supporting or less central materials preserved without deleting them
 
+## Notebook Roles And Expected Execution Sequence
+
+- **Primary notebook (chosen):** `notebooks/MATH279Project_priority4_6_integrated.ipynb`
+- **Supporting notebook:** `notebooks/MATH279Project.ipynb`
+- **Role of `src/run_alphamark_benchmark.py`:** script entry point for running the AlphaMark benchmark workflow and exporting the in-sample benchmark/split/matched-sync regression artifacts consumed by the integrated notebook.
+
+Expected sequence:
+1. Run in-sample regressions (benchmark/split/matched-sync estimation outputs).
+2. Run Priority 4 summary generation (cross-ETF timing and matched-sync summaries/heatmaps).
+3. Run Priority 5 out-of-sample forecasting.
+4. Run Priority 6 portfolio construction and performance summaries.
+
+Unresolved prerequisites (from `reports/priority4_6_notebook_guide.md`) that should be confirmed before treating the workflow as fully reproducible:
+- TODO: Confirm the upstream cells create `ret_cc`, `ret_co`, `ret_oc`.
+- TODO: Confirm the upstream cells create `vol`.
+- TODO: Confirm the upstream cells create `etf_ret_cc`.
+- TODO: Confirm the upstream cells create `stock_meta`.
+- TODO: Confirm `make_har_panel` is defined before the priorities 4–6 section.
+- TODO: Confirm saved CSV outputs from benchmark/split/matched-sync sections exist before running the integrated priority 4–6 blocks.
+
 ## Notes
 
 - Large local data and generated output directories remain in the working folder but are excluded from git in this first pass.

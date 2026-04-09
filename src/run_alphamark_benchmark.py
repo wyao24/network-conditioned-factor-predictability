@@ -8,13 +8,9 @@ import sys
 from pathlib import Path
 
 
-PROJECT_ROOT = Path(r"C:\Users\wyao2\Documents\MATH279Project")
-ANALYSIS_ROOT = PROJECT_ROOT / "analysis_outputs"
-PRIORITY_ROOT = ANALYSIS_ROOT / "priority4_6"
-ALPHAMARK_ROOT = PROJECT_ROOT / "_external" / "alphamark"
-ALPHAMARK_FEATURES_DIR = ANALYSIS_ROOT / "alphamark_input" / "daily_features_pkl"
-ALPHAMARK_OUTPUT_ROOT = ANALYSIS_ROOT / "alphamark_output"
-PYTHON_EXE = Path(r"C:\Users\wyao2\anaconda3\python.exe")
+DEFAULT_PROJECT_ROOT = Path(__file__).resolve().parents[1]
+LEGACY_PROJECT_ROOT = Path(r"C:\Users\wyao2\Documents\MATH279Project")
+LEGACY_PYTHON_EXE = Path(r"C:\Users\wyao2\anaconda3\python.exe")
 
 
 def build_plot_config() -> dict[str, object]:
@@ -32,16 +28,72 @@ def build_plot_config() -> dict[str, object]:
     }
 
 
+def _resolve_path(path_str: str | None, default: Path) -> Path:
+    if path_str:
+        return Path(path_str).expanduser().resolve()
+    return default.resolve()
+
+
+def _default_python_exe() -> Path:
+    if LEGACY_PYTHON_EXE.exists():
+        return LEGACY_PYTHON_EXE.resolve()
+    return Path(sys.executable).resolve()
+
+
+def _require_existing_path(path: Path, parser: argparse.ArgumentParser, label: str) -> None:
+    if not path.exists():
+        parser.error(f"{label} does not exist: {path}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run AlphaMark on exported project signals.")
-    parser.add_argument("--features-dir", default=str(ALPHAMARK_FEATURES_DIR))
-    parser.add_argument("--output-root", default=str(ALPHAMARK_OUTPUT_ROOT))
+    parser.add_argument(
+        "--project-root",
+        default=None,
+        help=(
+            "Project root path. Defaults to the repo root derived from this file "
+            "(or legacy path if it exists)."
+        ),
+    )
+    parser.add_argument(
+        "--analysis-root",
+        default=None,
+        help="Analysis outputs root. Defaults to <project-root>/analysis_outputs.",
+    )
+    parser.add_argument(
+        "--alphamark-root",
+        default=None,
+        help="AlphaMark repository root. Defaults to <project-root>/_external/alphamark.",
+    )
+    parser.add_argument(
+        "--python-exe",
+        default=None,
+        help="Python executable used to run AlphaMark. Defaults to current interpreter.",
+    )
+    parser.add_argument("--features-dir", default=None)
+    parser.add_argument("--output-root", default=None)
     parser.add_argument("--interval-start", default="2003-01-01")
     parser.add_argument("--interval-end", default="2023-12-31")
     args = parser.parse_args()
 
-    features_dir = Path(args.features_dir)
-    output_root = Path(args.output_root)
+    default_project_root = LEGACY_PROJECT_ROOT if LEGACY_PROJECT_ROOT.exists() else DEFAULT_PROJECT_ROOT
+    project_root = _resolve_path(args.project_root, default_project_root)
+    analysis_root = _resolve_path(args.analysis_root, project_root / "analysis_outputs")
+    alphamark_root = _resolve_path(args.alphamark_root, project_root / "_external" / "alphamark")
+    python_exe = _resolve_path(args.python_exe, _default_python_exe())
+    features_dir = _resolve_path(args.features_dir, analysis_root / "alphamark_input" / "daily_features_pkl")
+    output_root = _resolve_path(args.output_root, analysis_root / "alphamark_output")
+
+    _require_existing_path(project_root, parser, "Project root")
+    _require_existing_path(analysis_root, parser, "Analysis root")
+    _require_existing_path(alphamark_root, parser, "AlphaMark root")
+    _require_existing_path(features_dir, parser, "Features directory")
+    _require_existing_path(python_exe, parser, "Python executable")
+
+    alphamark_main = alphamark_root / "main.py"
+    if not alphamark_main.exists():
+        parser.error(f"AlphaMark entrypoint not found: {alphamark_main}")
+
     output_root.mkdir(parents=True, exist_ok=True)
 
     plot_cfg = build_plot_config()
@@ -59,9 +111,9 @@ def main() -> None:
     env["FP_PLOT_CONFIG"] = str(cfg_path)
     env["PYTHONIOENCODING"] = "utf-8"
 
-    cmd = [str(PYTHON_EXE), str(ALPHAMARK_ROOT / "main.py")]
+    cmd = [str(python_exe), str(alphamark_main)]
     print("Running:", " ".join(cmd))
-    subprocess.run(cmd, check=True, cwd=str(ALPHAMARK_ROOT), env=env)
+    subprocess.run(cmd, check=True, cwd=str(alphamark_root), env=env)
 
 
 if __name__ == "__main__":

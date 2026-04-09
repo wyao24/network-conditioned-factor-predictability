@@ -10,8 +10,9 @@ This is an initial repository organization pass rather than a final cleaned rese
 - `notebooks/`: project notebooks used for the course work and integrated analysis pass
 - `reports/`: proposal, progress report, final project write-up, and notebook guide
 - `docs/`: project slide deck
-- `figures/`: lightweight presentation-ready figures and companion CSV summaries
-- `data/`: small CSV inputs and summary outputs retained for the first upload
+- `results/figures/`: lightweight presentation-ready figure artifacts (PNG)
+- `results/tables/`: tabular result exports (CSV) used for slides and summaries
+- `data/`: lightweight non-result data and input manifests only
 - `archive/`: supporting or less central materials preserved without deleting them
 
 ## Notes

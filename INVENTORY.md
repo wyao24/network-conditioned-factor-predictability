@@ -9,8 +9,26 @@
 - `reports/William_Yao_Math_279_Midterm_Progress_Report.pdf`
 - `reports/ML in Finance - Network-Conditioned Factor Predictability (MATH 279).pdf`
 - `docs/ML in Finance - Network-Conditioned Factor Predictability (MATH 279).pptx`
-- `figures/priority4_*`, `figures/priority5_*`, and `figures/priority6_*` slide-ready outputs
-- `data/manifest.csv` and small summary/result CSV files retained for the first upload
+- `results/figures/priority4_*`, `results/figures/priority5_*`, and `results/figures/priority6_*` slide-ready PNG outputs
+- `results/tables/priority4_*`, `results/tables/priority5_*`, and `results/tables/priority6_*` tabular result CSV exports
+- `data/manifest.csv` and lightweight non-result input data retained for the first upload
+
+## Notebook Ownership, Script Role, And Run Order
+
+- **Primary notebook (chosen):** `notebooks/MATH279Project_priority4_6_integrated.ipynb`
+- **Supporting notebook:** `notebooks/MATH279Project.ipynb`
+- **Role of `src/run_alphamark_benchmark.py`:** benchmark workflow runner that generates/refreshes the in-sample regression exports used downstream by the integrated priorities 4–6 analysis section.
+
+Expected sequence:
+1. In-sample regressions
+2. Priority 4 summaries
+3. Priority 5 OOS forecasting
+4. Priority 6 portfolio construction
+
+Unresolved prerequisites carried forward from `reports/priority4_6_notebook_guide.md`:
+- TODO: Verify prerequisite objects are created earlier in-notebook (`ret_cc`, `ret_co`, `ret_oc`, `vol`, `etf_ret_cc`, `stock_meta`).
+- TODO: Verify `make_har_panel` is available before the integrated priorities 4–6 section.
+- TODO: Verify benchmark/split/matched-sync saved CSV outputs are present before running priority 4–6 cells.
 
 ## Files Moved
 
@@ -18,8 +36,9 @@
 - Top-level notebooks moved to `notebooks/`
 - Proposal, progress report, final report PDF, and notebook guide moved to `reports/`
 - Slide deck moved to `docs/`
-- Lightweight PNG and companion CSV slide outputs moved from `analysis_outputs/priority4_6/` to `figures/`
-- Small summary CSV files moved to `data/`
+- Lightweight PNG slide outputs moved from `analysis_outputs/priority4_6/` to `results/figures/`
+- Companion result CSV exports moved from `analysis_outputs/priority4_6/` to `results/tables/`
+- `data/` kept for lightweight non-result inputs and manifests
 - `_external/` moved to `archive/external/_external/`
 - `scribe_notes_work/` moved to `archive/supporting/scribe_notes_work/`
 - `presentation_media_extract/` moved to `archive/supporting/presentation_media_extract/`
@@ -61,4 +80,4 @@
 - Add a reproducibility note describing required data sources, environment setup, and execution order.
 - Confirm which notebook is the primary analysis notebook and whether one should be retired or renamed later.
 - Review overlapping CRSP output folders and designate a single canonical output location.
-- Decide whether any retained CSVs should move into a more explicit processed-data or results convention in a future pass.
+- Maintain the convention: `results/tables/` for result exports and `data/` for non-result inputs/manifests.

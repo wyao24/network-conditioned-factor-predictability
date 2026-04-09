@@ -173,22 +173,32 @@ Frame this as:
 
 ## Files produced by the integrated notebook
 
-The new section writes outputs to `analysis_outputs/priority4_6/`, including:
+The new section writes outputs to `analysis_outputs/priority4_6/` during execution.
 
-- `priority4_benchmark_total_effects.csv`
-- `priority4_timing_decomposition_summary.csv`
-- `priority4_matched_sync_total_effects.csv`
-- `priority4_matched_sync_overlap_metrics.csv`
-- `priority5_oos_forecast_summary.csv`
-- `priority6_portfolio_daily_returns.csv`
-- `priority6_portfolio_summary.csv`
-- `priority5_daily_ic_pivot.csv`
-- `priority6_net_sharpe_pivot.csv`
+For tracked repository artifacts, slide-ready outputs are organized as:
 
-and heatmaps:
-- `priority4_benchmark_total_effects.png`
-- `priority4_timing_decomposition.png`
-- `priority4_matched_sync_overlap_metrics.png`
+- figures (PNG): `results/figures/`
+  - `priority4_benchmark_total_effects.png`
+  - `priority4_timing_decomposition.png`
+  - `priority4_matched_sync_total_effects.png`
+  - `priority4_matched_sync_overlap_metrics.png`
+  - `priority5_forecast_summary_for_slides.png`
+  - `priority5_rmse_summary_for_slides.png`
+  - `priority6_portfolio_gross_summary_for_slides.png`
+
+- tabular result exports (CSV): `results/tables/`
+  - `priority4_benchmark_total_effects.csv`
+  - `priority4_timing_decomposition_summary.csv`
+  - `priority4_matched_sync_total_effects.csv`
+  - `priority4_matched_sync_overlap_metrics.csv`
+  - `priority5_forecast_model_average_for_slides.csv`
+  - `priority5_forecast_summary_for_slides.csv`
+  - `priority5_rmse_model_average_for_slides.csv`
+  - `priority5_rmse_summary_for_slides.csv`
+  - `priority6_portfolio_gross_model_average_for_slides.csv`
+  - `priority6_portfolio_gross_summary_for_slides.csv`
+
+Keep `data/` for lightweight non-result data and input manifests (for example `manifest.csv` and small non-result helper inputs).
 
 ---
 

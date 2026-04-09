@@ -1,0 +1,20 @@
+desktop.ini
+.jupyter_runtime/
+.ipynb_checkpoints/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pkl
+*.parquet
+
+# Large local data and generated outputs kept out of the initial upload
+/analysis_outputs/
+/crsp_outputs/
+/crsp_outputs_final/
+/parquet/
+/archive/external/_external/alphamark/_git_metadata_archive/
+
+# Common local environments
+.venv/
+venv/
+env/

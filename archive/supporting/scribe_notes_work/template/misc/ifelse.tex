@@ -1,0 +1,114 @@
+
+
+\newcounter{noteMCctr} \setcounter{noteMCctr}{1}
+\ifthenelse{\boolean{showComments}}{
+    \newcommand{\MC}[1]{\textbf{\textcolor{blue}{{{Mihai \#\arabic{noteMCctr}:}}#1}} \addtocounter{noteMCctr}{1}}
+}{
+    \newcommand{\MC}[1]{}
+}
+
+
+\newcounter{noteMCQctr} \setcounter{noteMCQctr}{1}
+\ifthenelse{\boolean{showComments}}{   
+    \newcommand{\MCQ}[1]{\textbf{\textcolor{colour3}{{{MihaiQ: \#\arabic{noteMCQctr}: }}#1}} \addtocounter{noteMCQctr}{1}}
+}{
+    \newcommand{\MCQ}[1]{}
+}
+
+
+
+
+\newcounter{noteMCLctr} \setcounter{noteMCLctr}{1}
+\ifthenelse{\boolean{showComments}}{
+    \newcommand{\MCL}[1]{\textbf{\textcolor{colour5}{{{MihaiLater: \#\arabic{noteMCLctr}: }}#1}} \addtocounter{noteMCLctr}{1}}
+}{
+    \newcommand{\MCL}[1]{}
+}
+
+   
+\newcounter{noteABctr} \setcounter{noteABctr}{1}
+\ifthenelse{\boolean{showComments}}{
+    \newcommand{\AB}[1]{\textbf{\textcolor{red}{{{Andrea: \#\arabic{noteABctr}: }}#1}} \addtocounter{noteABctr}{1}}
+}{
+    \newcommand{\AB}[1]{}
+}
+
+
+\newcounter{noteHSctr} \setcounter{noteHSctr}{1}
+\ifthenelse{\boolean{showComments}}{
+    \newcommand{\HS}[1]{\textbf{\textcolor{cyan}{{{Hayden: \#\arabic{noteHSctr}: }}#1}} \addtocounter{noteHSctr}{1}}
+}{
+    \newcommand{\HS}[1]{}
+}
+
+
+\newcounter{noteMVctr} \setcounter{noteMVctr}{1}
+\ifthenelse{\boolean{showComments}}{
+    \newcommand{\MV}[1]{\textbf{\textcolor{orange}{{{Moritz: \#\arabic{noteMVctr}: }}#1}} \addtocounter{noteMVctr}{1}}
+}{
+    \newcommand{\MV}[1]{}
+}
+
+
+
+\newcounter{noteDBctr} \setcounter{noteDBctr}{1}
+\ifthenelse{\boolean{showComments}}{
+    \newcommand{\DB}[1]{\textbf{\textcolor{brown}{{{Don: \#\arabic{noteDBctr}: }}#1}} \addtocounter{noteDBctr}{1}}
+}{
+    \newcommand{\DB}[1]{}
+}
+
+
+\newcounter{noteGMctr} \setcounter{noteGMctr}{1}
+\ifthenelse{\boolean{showComments}}{
+    \newcommand{\GM}[1]{\textbf{\textcolor{darkpastelgreen}{{{Georg: \#\arabic{noteGMctr}: }}#1}} \addtocounter{noteGMctr}{1}}
+}{
+    \newcommand{\GM}[1]{}
+}
+
+
+% Marcur Ropert  (for some reason, \MR does not work, probably taken)
+\newcounter{noteMRctr} \setcounter{noteMRctr}{1}
+\ifthenelse{\boolean{showComments}}{
+    \newcommand{\MAR}[1]{\textbf{\textcolor{teal}{{{Marcus: \#\arabic{noteMRctr}: }}#1}} \addtocounter{noteMRctr}{1}}
+}{
+    \newcommand{\MAR}[1]{}
+}
+
+
+\newcounter{noteMBctr} \setcounter{noteMBctr}{1}
+\ifthenelse{\boolean{showComments}}{
+    \newcommand{\MB}[1]{\textbf{\textcolor{olive}{{{Mario: \#\arabic{noteMBctr}: }}#1}} \addtocounter{noteMBctr}{1}}
+}{
+    \newcommand{\MB}[1]{}
+}
+
+
+
+
+\ifthenelse{\boolean{showColors}}{
+    \newcommand{\mc}[1]{\textcolor{blue}{#1}}
+    \newcommand{\ab}[1]{\textcolor{red}{#1}}
+    \newcommand{\hs}[1]{\textcolor{cyan}{#1}}
+    \newcommand{\mv}[1]{\textcolor{orange}{#1}}
+    \newcommand{\db}[1]{\textcolor{brown}{#1}}  
+    \newcommand{\gm}[1]{\textcolor{darkpastelgreen}{#1}}  
+    \newcommand{\mar}[1]{\textcolor{teal}{#1}}  
+    \newcommand{\mb}[1]{\textcolor{olive}{#1}}  
+}{
+    \newcommand{\mc}[1]{\textcolor{black}{#1}}
+    \newcommand{\ab}[1]{\textcolor{black}{#1}}
+    \newcommand{\hs}[1]{\textcolor{black}{#1}}
+    \newcommand{\mv}[1]{\textcolor{black}{#1}}
+    \newcommand{\db}[1]{\textcolor{black}{#1}}
+    \newcommand{\gm}[1]{\textcolor{black}{#1}}
+    \newcommand{\mar}[1]{\textcolor{black}{#1}}
+    \newcommand{\mb}[1]{\textcolor{black}{#1}}
+}
+
+
+
+
+
+
+

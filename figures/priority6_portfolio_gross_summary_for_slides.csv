@@ -1,0 +1,11 @@
+ETF,HAR_Gross_Sharpe,Best_Gross_Model,Best_Gross_Sharpe,Gross_Sharpe_Gain_vs_HAR,Best_Mean_Gross_Return,Best_Cum_Gross_Return,Interpretation
+XLE,0.013354,sync_etf_har,0.358866,0.345512,0.00031,1.635,Gross improvement
+XLF,0.013354,matched_sync_etf_har,0.269985,0.256631,0.000252,1.329,Gross improvement
+SPY,0.013354,matched_sync_etf_har,0.240203,0.226849,0.000228,1.202,Gross improvement
+IWM,-0.051004,sync_etf_har,0.153886,0.20489,0.000148,0.782,Gross improvement
+XLY,0.013354,matched_sync_etf_har,0.203537,0.190183,0.000199,1.05,Gross improvement
+XLV,0.013354,sync_etf_har,0.131129,0.117774,0.000119,0.629,Gross improvement
+TLT,-0.197952,sync_etf_har,-0.101132,0.09682,-9e-05,-0.476,Gross improvement
+GLD,-0.064183,sync_etf_har,-0.008626,0.055557,-8e-06,-0.037,Gross improvement
+XLK,0.013354,matched_sync_etf_har,0.03167,0.018316,3.1e-05,0.165,Gross improvement
+QQQ,-0.474033,har_only,-0.474033,0.0,-0.00043,-1.578,No gross improvement

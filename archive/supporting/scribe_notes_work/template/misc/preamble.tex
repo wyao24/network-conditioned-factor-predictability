@@ -1,0 +1,95 @@
+
+
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}
+\usepackage{graphicx}
+% \usepackage{unicode-math}
+\usepackage{amsmath}
+\usepackage{bbm}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{float}
+\usepackage{epstopdf}
+
+
+
+
+\usepackage{amsthm}
+
+\usepackage[english]{babel}
+\newtheorem{theorem}{Theorem}
+% \theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\usepackage[dvipsnames]{xcolor} 
+
+\usepackage[colorlinks=true,linkcolor=red,filecolor=green,citecolor=red]{hyperref}
+
+% \usepackage{setspace} 
+% \usepackage[titles]{tocloft}
+% \setlength{\cftbeforechapskip}{3pt}
+
+%\usepackage{tocbasic}
+%\DeclareTOCStyleEntry[
+%  beforeskip=.2em plus 1pt,% default is 1em plus 1pt
+%  pagenumberformat=\textbf
+%]{tocline}{chapter}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{titletoc}
+    \titlecontents{chapter}
+    [0em] %
+    {\medskip\bfseries}
+    {\thecontentslabel\quad}%numbered chapters
+    {}%numberless chapter
+    {\hfill\contentspage}
+
+    \titlecontents{section}[1.72em]{\smallskip}%
+    {\thecontentslabel.\enspace}%numbered sections
+    {}%numberless section
+    {\titlerule*[1.2pc]{.}\contentspage}%
+    
+
+
+%% In the below, create a macro for each one of you
+% (just copy paste the two lines below, and replace every occurrence of MC with you initials, update your name and choose your favorite colour)
+
+\newcounter{noteMCctr} \setcounter{noteMCctr}{1}
+\newcommand{\MC}[1]{\textbf{\textcolor{blue}{{{Mihai: \#\arabic{noteMCctr}: }}#1}} \addtocounter{noteMCctr}{1}}
+
+
+ 
+
+\newcounter{noteXXctr} \setcounter{noteXXctr}{1}
+\newcommand{\XX}[1]{\textbf{\textcolor{BurntOrange}{{{XXXXX: \#\arabic{noteXXctr}: }}#1}} \addtocounter{noteXXctr}{1}}
+
+
+\newcommand{\bb}{\hspace{-1mm} $\bullet$ }
+% \usepackage[left=2 cm,right=2 cm,top=1.7 cm,bottom=1.7 cm,headsep=0.6 cm,footnotesep=0.6cm]{geometry}
+    
+    
+
+
+    
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+% This is a qualitive colour map with adjustmen
+\definecolor{colour1}{RGB}{166,206,227}
+\definecolor{colour2}{RGB}{31,120,180}
+\definecolor{colour3}{RGB}{178,55,250} % purple
+\definecolor{colour4}{RGB}{51,160,44}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{red}{#1}}
+
+
+\definecolor{colour3}{RGB}{178,55,250} % purple
+\newcommand{\mc}[1]{\textcolor{colour3}{#1}}
+
+\newcounter{noteMCctr} \setcounter{noteMCctr}{1}
+\newcommand{\MC}[1]{\textbf{\textcolor{colour3}{{{Mihai: \#\arabic{noteMCctr}: }}#1}} \addtocounter{noteMCctr}{1}}
+

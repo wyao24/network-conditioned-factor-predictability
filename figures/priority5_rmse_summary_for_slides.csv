@@ -1,0 +1,11 @@
+ETF,HAR_RMSE,Best_RMSE_Model,Best_RMSE,RMSE_Improvement_vs_HAR,Interpretation
+GLD,0.02941,har_only,0.02941,0.0,No material RMSE gain
+IWM,0.028911,har_only,0.028911,0.0,No material RMSE gain
+QQQ,0.027928,har_only,0.027928,0.0,No material RMSE gain
+SPY,0.02891,har_only,0.02891,0.0,No material RMSE gain
+TLT,0.028915,har_only,0.028915,0.0,No material RMSE gain
+XLE,0.02891,har_only,0.02891,0.0,No material RMSE gain
+XLF,0.02891,har_only,0.02891,0.0,No material RMSE gain
+XLK,0.02891,har_only,0.02891,0.0,No material RMSE gain
+XLV,0.02891,har_only,0.02891,0.0,No material RMSE gain
+XLY,0.02891,har_only,0.02891,0.0,No material RMSE gain

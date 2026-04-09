@@ -1,0 +1,5 @@
+model,avg_gross_sharpe,avg_mean_gross_return,avg_cum_gross_return,etf_count
+matched_sync_etf_har,0.108529,9.8e-05,0.613256,8
+sync_etf_har,0.07354,6.6e-05,0.425208,10
+etf_har,0.068182,6.1e-05,0.402468,10
+har_only,-0.070705,-6.4e-05,-0.264799,10

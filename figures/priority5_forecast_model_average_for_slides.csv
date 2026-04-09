@@ -1,0 +1,5 @@
+model,avg_daily_ic,avg_rmse,etf_count
+matched_sync_etf_har,0.002979,0.028808,8
+sync_etf_har,0.002915,0.028875,10
+etf_har,0.002855,0.028872,10
+har_only,0.002301,0.028863,10

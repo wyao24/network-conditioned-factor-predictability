@@ -20,6 +20,13 @@ This README is intentionally limited to evidenced artifacts from the specified f
 - `reports/priority4_6_notebook_guide.md`: workflow narrative, block-by-block notebook integration notes, and expected Priority 4–6 outputs.
 - `data/priority5_oos_forecast_summary.csv`: ETF/model-level OOS forecast metrics (`nobs`, `rmse`, `daily_ic_mean`, `daily_ic_std`).
 - `data/priority6_portfolio_summary.csv`: ETF/model-level portfolio performance metrics (gross/net returns, gross/net Sharpe, turnover, cumulative returns, days).
+- `src/`: project Python entry point used for the AlphaMark benchmark workflow
+- `notebooks/`: project notebooks used for the course work and integrated analysis pass
+- `reports/`: proposal, progress report, final project write-up, and notebook guide (paper/report artifacts only)
+- `docs/`: all slide decks (canonical location; no duplicate slide copies kept in `reports/`)
+- `figures/`: lightweight presentation-ready figures and companion CSV summaries
+- `data/`: small CSV inputs and summary outputs retained for the first upload
+- `archive/`: supporting or less central materials preserved without deleting them
 
 ## Current Artifacts
 - Priority 5 summary table: `data/priority5_oos_forecast_summary.csv`.
@@ -66,6 +73,9 @@ Evidence-constrained limitations from the provided files:
 - The guide is procedural/descriptive and does not provide a fully specified standalone run script for Priority 4–6.
 - The retained CSVs are aggregate summaries; they do not include the underlying daily panel needed to independently recompute every intermediate step.
 - The guide confirms dependency on earlier notebook objects, so Priority 4–6 cannot be validated as an isolated module from the available evidence alone.
+- Large local data and generated output directories remain in the working folder but are excluded from git in this first pass.
+- Archive content is retained conservatively so existing work is not lost during cleanup.
+- Repository convention: keep all slide decks in `docs/` and keep `reports/` focused on paper-style artifacts.
 
 ## Next Steps
 - Confirm and document authoritative execution order for the integrated notebook blocks.

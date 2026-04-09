@@ -13,6 +13,23 @@
 - `results/tables/priority4_*`, `results/tables/priority5_*`, and `results/tables/priority6_*` tabular result CSV exports
 - `data/manifest.csv` and lightweight non-result input data retained for the first upload
 
+## Notebook Ownership, Script Role, And Run Order
+
+- **Primary notebook (chosen):** `notebooks/MATH279Project_priority4_6_integrated.ipynb`
+- **Supporting notebook:** `notebooks/MATH279Project.ipynb`
+- **Role of `src/run_alphamark_benchmark.py`:** benchmark workflow runner that generates/refreshes the in-sample regression exports used downstream by the integrated priorities 4–6 analysis section.
+
+Expected sequence:
+1. In-sample regressions
+2. Priority 4 summaries
+3. Priority 5 OOS forecasting
+4. Priority 6 portfolio construction
+
+Unresolved prerequisites carried forward from `reports/priority4_6_notebook_guide.md`:
+- TODO: Verify prerequisite objects are created earlier in-notebook (`ret_cc`, `ret_co`, `ret_oc`, `vol`, `etf_ret_cc`, `stock_meta`).
+- TODO: Verify `make_har_panel` is available before the integrated priorities 4–6 section.
+- TODO: Verify benchmark/split/matched-sync saved CSV outputs are present before running priority 4–6 cells.
+
 ## Files Moved
 
 - Top-level Python code moved to `src/`

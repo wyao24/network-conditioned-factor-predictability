@@ -26,14 +26,25 @@ This README is intentionally limited to evidenced artifacts from the specified f
 - Priority 6 summary table: `data/priority6_portfolio_summary.csv`.
 - Priority 4–6 integration and interpretation guide: `reports/priority4_6_notebook_guide.md`.
 
-## Reproducibility / Running the Project
-Known execution-order evidence:
-- The guide states Priority 4–6 cells are inserted after Extension 2 and before legacy compatibility cells.
-- The guide also states the section is not standalone and assumes earlier notebook cells already created core objects (for example `ret_cc`, `vol`, `etf_ret_cc`, `stock_meta`, `make_har_panel`, and prior regression CSVs).
+## Notebook Roles And Expected Execution Sequence
 
-Uncertainty (explicit):
-- The exact end-to-end execution order across all notebook cells is not fully specified in the provided summary files.
-- Environment/package requirements and exact command-line entry points for reproducing the same outputs are not fully enumerated in the provided evidence set.
+- **Primary notebook (chosen):** `notebooks/MATH279Project_priority4_6_integrated.ipynb`
+- **Supporting notebook:** `notebooks/MATH279Project.ipynb`
+- **Role of `src/run_alphamark_benchmark.py`:** script entry point for running the AlphaMark benchmark workflow and exporting the in-sample benchmark/split/matched-sync regression artifacts consumed by the integrated notebook.
+
+Expected sequence:
+1. Run in-sample regressions (benchmark/split/matched-sync estimation outputs).
+2. Run Priority 4 summary generation (cross-ETF timing and matched-sync summaries/heatmaps).
+3. Run Priority 5 out-of-sample forecasting.
+4. Run Priority 6 portfolio construction and performance summaries.
+
+Unresolved prerequisites (from `reports/priority4_6_notebook_guide.md`) that should be confirmed before treating the workflow as fully reproducible:
+- TODO: Confirm the upstream cells create `ret_cc`, `ret_co`, `ret_oc`.
+- TODO: Confirm the upstream cells create `vol`.
+- TODO: Confirm the upstream cells create `etf_ret_cc`.
+- TODO: Confirm the upstream cells create `stock_meta`.
+- TODO: Confirm `make_har_panel` is defined before the priorities 4–6 section.
+- TODO: Confirm saved CSV outputs from benchmark/split/matched-sync sections exist before running the integrated priority 4–6 blocks.
 
 TODO (non-speculative):
 - TODO: Add a cell-by-cell execution checklist (with cell IDs or section anchors) for the integrated notebook.

@@ -1,83 +1,86 @@
 # Network-Conditioned Factor Predictability
 
-## Overview
-This repository documents an integrated Priority 4–6 analysis layer for a MATH 279 project, framed as a progression from in-sample model evidence to cross-ETF comparison, out-of-sample (OOS) forecasting, and portfolio-value evaluation. The notebook guide describes this flow as: data -> in-sample evidence -> cross-ETF comparison -> OOS forecasting -> portfolio value.
+This repository contains the research artifacts for **"ML in Finance - Network-Conditioned Factor Predictability (MATH 279)"**.
 
-## Research Question
-The guide explicitly frames three linked questions:
-- Priority 4: Which ETFs show stronger state dependence, and does matched synchronization sharpen economic alignment?
-- Priority 5: Do synchronization-conditioned ETF predictors add OOS ranking power over HAR-only baselines?
-- Priority 6: Does predictive ranking translate into economically meaningful long-short spreads after trading frictions?
+Primary paper artifacts:
+- `reports/ML in Finance - Network-Conditioned Factor Predictability (MATH 279).pdf`
+- `docs/ML in Finance - Network-Conditioned Factor Predictability (MATH 279).pptx`
 
-## Methodology
-Based on the notebook guide and retained summary outputs:
-- Priority 4 post-processes saved regression outputs into total-effect/timing-decomposition summaries and heatmap-ready tables.
-- Priority 5 uses an expanding-window OOS forecast loop that builds HAR predictors, forms design matrices, updates cumulative moment objects, refits periodically, and generates stock-level predictions.
-- Priority 6 converts forecasts into long-short decile portfolios, computes turnover relative to prior weights, and reports both gross and transaction-cost-adjusted (net) results.
+## Paper focus
 
-## Repository Structure
-This README is intentionally limited to evidenced artifacts from the specified files:
-- `reports/priority4_6_notebook_guide.md`: workflow narrative, block-by-block notebook integration notes, and expected Priority 4–6 outputs.
-- `data/priority5_oos_forecast_summary.csv`: ETF/model-level OOS forecast metrics (`nobs`, `rmse`, `daily_ic_mean`, `daily_ic_std`).
-- `data/priority6_portfolio_summary.csv`: ETF/model-level portfolio performance metrics (gross/net returns, gross/net Sharpe, turnover, cumulative returns, days).
-- `src/`: project Python entry point used for the AlphaMark benchmark workflow
-- `notebooks/`: project notebooks used for the course work and integrated analysis pass
-- `reports/`: proposal, progress report, final project write-up, and notebook guide (paper/report artifacts only)
-- `docs/`: all slide decks (canonical location; no duplicate slide copies kept in `reports/`)
-- `figures/`: lightweight presentation-ready figures and companion CSV summaries
-- `data/`: small CSV inputs and summary outputs retained for the first upload
-- `archive/`: supporting or less central materials preserved without deleting them
+The paper asks whether ETF-linked signals predict stock returns in the cross section, and whether that predictability changes with market-wide synchronization (co-trading intensity).
 
-## Current Artifacts
-- Priority 5 summary table: `data/priority5_oos_forecast_summary.csv`.
-- Priority 6 summary table: `data/priority6_portfolio_summary.csv`.
-- Priority 4–6 integration and interpretation guide: `reports/priority4_6_notebook_guide.md`.
+Core questions:
+1. **ETF predictability:** Do ETF returns predict stock returns cross-sectionally?
+2. **State dependence:** Is predictability different on high-synchronization vs low-synchronization days?
+3. **Timing/sign structure:** Does predictability appear as continuation or reversal, and through overnight vs intraday channels?
 
-## Notebook Roles And Expected Execution Sequence
+## Research design in the paper
 
-- **Primary notebook (chosen):** `notebooks/MATH279Project_priority4_6_integrated.ipynb`
-- **Supporting notebook:** `notebooks/MATH279Project.ipynb`
-- **Role of `src/run_alphamark_benchmark.py`:** script entry point for running the AlphaMark benchmark workflow and exporting the in-sample benchmark/split/matched-sync regression artifacts consumed by the integrated notebook.
+### 1) Data and return construction
+- Sample period is rebuilt from **2000–2023** using adjusted prices.
+- Returns are decomposed into:
+  - close-to-close,
+  - close-to-open (overnight),
+  - open-to-close (intraday).
+- HAR-style aggregations are built for stock and ETF returns across horizons.
 
-Expected sequence:
-1. Run in-sample regressions (benchmark/split/matched-sync estimation outputs).
-2. Run Priority 4 summary generation (cross-ETF timing and matched-sync summaries/heatmaps).
-3. Run Priority 5 out-of-sample forecasting.
-4. Run Priority 6 portfolio construction and performance summaries.
+### 2) Synchronization measure
+- Start from standardized stock-level abnormal volume shocks.
+- Keep unusually large shocks.
+- Aggregate squared shocks across stocks into a market-wide synchronization index.
+- Define **high synchronization** as top-quantile days (top 20% in the paper slides).
 
-Unresolved prerequisites (from `reports/priority4_6_notebook_guide.md`) that should be confirmed before treating the workflow as fully reproducible:
-- TODO: Confirm the upstream cells create `ret_cc`, `ret_co`, `ret_oc`.
-- TODO: Confirm the upstream cells create `vol`.
-- TODO: Confirm the upstream cells create `etf_ret_cc`.
-- TODO: Confirm the upstream cells create `stock_meta`.
-- TODO: Confirm `make_har_panel` is defined before the priorities 4–6 section.
-- TODO: Confirm saved CSV outputs from benchmark/split/matched-sync sections exist before running the integrated priority 4–6 blocks.
+### 3) Benchmark model logic
+- Target variable: stock close-to-close return.
+- Predictors: stock HAR controls + ETF HAR predictors.
+- Key interaction: ETF predictors × high-synchronization indicator.
+- Interpretation emphasizes sign/magnitude patterns and cross-ETF consistency.
 
-TODO (non-speculative):
-- TODO: Add a cell-by-cell execution checklist (with cell IDs or section anchors) for the integrated notebook.
-- TODO: Add the minimal environment specification (Python version + required packages) used to generate the two retained summary CSVs.
-- TODO: Add an explicit mapping from notebook sections to each output file listed in the guide.
+## Main findings emphasized in the paper
 
-## Key Findings
-From `data/priority5_oos_forecast_summary.csv`:
-- Across all listed ETFs, `har_only` has the lowest RMSE among compared models in this summary table.
-- Daily IC means are small in magnitude; most ETF/model combinations are positive, while all shown QQQ variants are slightly negative.
+From the paper/presentation narrative:
+- ETF predictability is **state-dependent**.
+- For major equity ETFs, high synchronization is associated with a short-horizon shift from weak continuation toward stronger reversal.
+- Weekly/monthly horizons become relatively more positive in high-synchronization regimes.
+- Timing decomposition indicates distinct overnight and intraday channels.
+- TLT behavior is qualitatively different from equity ETF patterns.
 
-From `data/priority6_portfolio_summary.csv`:
-- All listed ETF/model combinations have negative net Sharpe ratios (range approximately -2.58 to -1.32 in this file).
-- Average turnover is high (roughly 1.07 to 2.13), and mean net returns are negative across listed strategies.
-- Several ETF/model combinations show positive gross Sharpe, but these do not remain positive after transaction-cost adjustment in this summary.
+## Repository guide (paper-oriented)
 
-## Limitations
-Evidence-constrained limitations from the provided files:
-- The guide is procedural/descriptive and does not provide a fully specified standalone run script for Priority 4–6.
-- The retained CSVs are aggregate summaries; they do not include the underlying daily panel needed to independently recompute every intermediate step.
-- The guide confirms dependency on earlier notebook objects, so Priority 4–6 cannot be validated as an isolated module from the available evidence alone.
-- Large local data and generated output directories remain in the working folder but are excluded from git in this first pass.
-- Archive content is retained conservatively so existing work is not lost during cleanup.
-- Repository convention: keep all slide decks in `docs/` and keep `reports/` focused on paper-style artifacts.
+### Documents
+- `reports/ML in Finance - Network-Conditioned Factor Predictability (MATH 279).pdf`: primary write-up.
+- `docs/ML in Finance - Network-Conditioned Factor Predictability (MATH 279).pptx`: presentation version of the same research.
+- `reports/Math_279_Research_Proposal.pdf`: proposal-stage framing.
+- `reports/William_Yao_Math_279_Midterm_Progress_Report.pdf`: midterm progress report.
 
-## Next Steps
-- Confirm and document authoritative execution order for the integrated notebook blocks.
-- Publish reproducibility metadata (environment + deterministic run instructions) tied to Priority 5 and Priority 6 outputs.
-- Extend reporting to include uncertainty intervals and robustness variants in the same summary format as the retained CSV artifacts.
+### Methods/context notes
+- `docs/project-overview.md`: concise framing.
+- `docs/methods.md`: implementation summary tied to notebook artifacts.
+
+### Code/notebooks
+- `notebooks/MATH279Project.ipynb`: main course notebook lineage.
+- `notebooks/MATH279Project_priority4_6_integrated.ipynb`: integrated analysis notebook containing later-stage action-plan blocks.
+- `src/run_alphamark_benchmark.py`: benchmark pipeline entry point used for in-sample exports.
+
+### Data/results tables
+- `data/`: compact long-format regression outputs and summary tables.
+- `results/tables/` and `results/figures/`: export-ready tables/figures used in reporting.
+
+## How to read this repository for the paper
+
+If your goal is to understand the paper quickly:
+1. Read the final paper PDF in `reports/`.
+2. Use the slide deck in `docs/` for concise narrative and headline results.
+3. Use `docs/methods.md` + notebooks for implementation details.
+4. Use `data/` and `results/tables/` for table-level verification and figure regeneration.
+
+## Reproducibility boundaries
+
+This repository tracks compact analysis artifacts, but large local datasets and generated trees are intentionally excluded from version control. As a result:
+- you can validate summary-level findings and regenerate many reported tables/figures,
+- full from-scratch reconstruction requires local raw inputs and full notebook dependency chain.
+
+---
+
+If you are citing this project, treat the **paper PDF** as the canonical research narrative and use notebooks/tables as supporting implementation evidence.
